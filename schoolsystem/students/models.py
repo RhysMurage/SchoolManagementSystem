@@ -42,7 +42,6 @@ class StudentInfo(models.Model):
     class_type = models.ForeignKey(StudentClassInfo, on_delete=models.CASCADE)
     section_type = models.ForeignKey(StudentSectionInfo, on_delete=models.CASCADE)
     shift_type = models.ForeignKey(StudentShiftInfo, on_delete=models.CASCADE)
-    student_img = models.ImageField(upload_to='photos/%Y/%m/%d/')
     fathers_name = models.CharField(max_length=100)
     fathers_id = models.IntegerField(unique=True)
     fathers_number = models.IntegerField(unique=True)
