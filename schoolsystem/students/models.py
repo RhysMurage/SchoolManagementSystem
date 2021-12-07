@@ -11,7 +11,7 @@ class StudentClassInfo(models.Model):
         return self.class_name
  
  
-class StudentSectionInfo(models.Model):
+class StudentSubjectInfo(models.Model):
     section_name = models.CharField(max_length=20)
  
     def __str__(self):
