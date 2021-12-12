@@ -40,7 +40,7 @@ class StudentInfo(models.Model):
     )
     gender = models.CharField(choices=gender_choice, max_length=10)
     class_type = models.ForeignKey(StudentClassInfo, on_delete=models.CASCADE)
-    section_type = models.ForeignKey(StudentSectionInfo, on_delete=models.CASCADE)
+    section_type = models.ForeignKey(StudentSubjectInfo, on_delete=models.CASCADE)
     shift_type = models.ForeignKey(StudentShiftInfo, on_delete=models.CASCADE)
     fathers_name = models.CharField(max_length=100)
     fathers_id = models.IntegerField(unique=True)
