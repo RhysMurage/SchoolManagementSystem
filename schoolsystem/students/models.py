@@ -1,21 +1,35 @@
 from django.db import models
+from django.db.models.base import Model
 
 # Create your models here.
-from django.shortcuts import render
+from django.shortcuts import renders
+
+
+
+class ClassStreams(models.Model):
+    class_stream = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.class_stream
+
+class ClassGrade(models.Model):
+    grade = models.IntegerField(default=1)
+
 
 class StudentClassInfo(models.Model):
-    class_name = models.CharField(max_length=20)
-    class_short_form = models.CharField(max_length=10)
+    class_grade = models.ForeignKey(ClassGrade, on_delete=models.CASCADE, related_name='')
+    class_name = models.ForeignKey(ClassStreams, on_delete=models.CASCADE, related_name='')
+    population = models.IntegerField(default=1)
  
     def __str__(self):
         return self.class_name
  
  
-class StudentSubjectInfo(models.Model):
-    section_name = models.CharField(max_length=20)
- 
+class Subjects(models.Model):
+    subject_name = models.CharField(max_length=50)
+
     def __str__(self):
-        return self.section_name
+        return self.subject_name
  
  
 class StudentShiftInfo(models.Model):
@@ -40,7 +54,7 @@ class StudentInfo(models.Model):
     )
     gender = models.CharField(choices=gender_choice, max_length=10)
     class_type = models.ForeignKey(StudentClassInfo, on_delete=models.CASCADE)
-    section_type = models.ForeignKey(StudentSubjectInfo, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
     shift_type = models.ForeignKey(StudentShiftInfo, on_delete=models.CASCADE)
     fathers_name = models.CharField(max_length=100)
     fathers_id = models.IntegerField(unique=True)
